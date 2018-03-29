@@ -1,4 +1,10 @@
 require "google_experiments/version"
+require "google_experiments/CLI"
+require "google_experiments/homepage"
+require "google_experiments/expriment_list"
+require "google_experiments/expriment"
+require "google_experiments/homepage"
+require "google_experiments/scraper"
 require "google_experiments"
 
 module GoogleExperiments

@@ -1,5 +1,5 @@
 module GoogleExperiments
-  class ClassName
+  class Scraper
     def initialize
           
     end
