@@ -1,10 +1,18 @@
 module GoogleExperiments
   class CLI
     def initialize
-      
+      scraper = Scraper.new
+      homepage = Homepage.new
+      @user_input = ''
     end
     
     def run
+      while @user_input != 'exit'
+        welcome_page
+      end
+    end
+
+    def welcome_page
       puts "\nBrowse cool experiments from google."
       puts "\nPlease choose a catigory and enter it's number"
       puts "\n1. Voice"
@@ -22,6 +30,7 @@ module GoogleExperiments
       puts "\n7. Chrome"
       puts "     See how creativity and code come together on the web."
       puts ""
+      @user_input = gets.strip
     end
   end
 end
