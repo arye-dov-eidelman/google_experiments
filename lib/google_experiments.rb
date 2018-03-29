@@ -1,5 +1,5 @@
 require "google_experiments/version"
-require "google_experiments/CLI"
+require "google_experiments/cli"
 require "google_experiments/homepage"
 require "google_experiments/expriment_list"
 require "google_experiments/expriment"
