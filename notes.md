@@ -4,7 +4,7 @@
 
   [ 1.1 ] cli (fake data) - instantiates scraper and homepage object
 
-  [ 1.2 ] homepage  (fake data) - stores all data from the home page
+  [ 1.2 ] homepage (fake data) - stores all data from the home page
 
   [ 1.3 ] cli uses real data from homepage
 
