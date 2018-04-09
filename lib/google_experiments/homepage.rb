@@ -3,8 +3,7 @@ module GoogleExperiments
     attr_reader :categories, :about
     def initialize
       unless @categories && @about
-        @scraper = Scraper.new # should be defined elseware in the moduale scope
-        homepage_data = @scraper.homepage
+        homepage_data = SCRAPER.homepage
         @about = homepage_data[:about]
         @categories = []
         homepage_data[:categories].each do |category_data|

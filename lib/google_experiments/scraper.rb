@@ -15,10 +15,10 @@ module GoogleExperiments
         {link: "/chrome", title: "Chrome", subtitle: "See how creativity and code come together on the web."}
       ]
 
-      about = <<-EOS
-Since 2009, coders have created thousands of amazing experiments using Chrome, Android, AI, WebVR, AR and more.
-We're showcasing projects here, along with helpful tools and resources, to inspire others to create new experiments.
-Here are collections of experiments to explore, with new ones added every week. Have fun.
+      about = <<~EOS
+        Since 2009, coders have created thousands of amazing experiments using Chrome, Android, AI, WebVR, AR and more.
+        We're showcasing projects here, along with helpful tools and resources, to inspire others to create new experiments.
+        Here are collections of experiments to explore, with new ones added every week. Have fun.
       EOS
       
       {categories: categories, about: about}

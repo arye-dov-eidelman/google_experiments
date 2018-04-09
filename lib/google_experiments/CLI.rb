@@ -22,21 +22,13 @@ module GoogleExperiments
     def welcome_page
       @homepage ||= Homepage.new
       puts "\nBrowse cool experiments from google."
+      puts "\n#{@homepage.about}"
       puts "\nPlease choose a catigory and enter it's number"
-      puts "\n1. Voice"
-      puts "     Explore voice interaction in fun new ways."
-      puts "\n2. Arts & Culture"
-      puts "     See what happens at the crossroads of art and technology."
-      puts "\n3. AR"
-      puts "     Explorations in augmented reality."
-      puts "\n4. WebVR"
-      puts "     See what’s possible with virtual reality on the web."
-      puts "\n5. AI"
-      puts "     See what happens when anyone can play with machine learning."
-      puts "\n6. Android"
-      puts "     See how creativity and code come together on Android."
-      puts "\n7. Chrome"
-      puts "     See how creativity and code come together on the web."
+
+      @homepage.categories.each.with_index do |catigory, i|
+        puts "\n#{i+1}. #{catigory.title}"
+        puts "     #{catigory.subtitle}"
+      end
       puts ""
       self.input
     end

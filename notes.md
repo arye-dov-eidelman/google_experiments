@@ -16,7 +16,7 @@
 
 [ 3 ] Level 3: choosing an experiment will display more data about that experiment (Scraper, Experiment and CLI classes)
 
-## notes about change of plan done on 4/9/2018 (mainly to self, dont be surprised if don't understand.)
+## notes about change of plan done on 4/9/2018 (mainly to self, dont be surprised if you don't understand.)
 
 ``` ruby
                 fake = "dosen't use data from its parent (a from b, b from c or c from the actual_live_website)"
