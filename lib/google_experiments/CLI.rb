@@ -1,8 +1,6 @@
 module GoogleExperiments
   class CLI
     def initialize
-      @scraper = Scraper.new
-      @homepage = Homepage.new
       @user_input = ''
     end
     
@@ -22,7 +20,7 @@ module GoogleExperiments
     end
 
     def welcome_page
-      # @homepage
+      @homepage ||= Homepage.new
       puts "\nBrowse cool experiments from google."
       puts "\nPlease choose a catigory and enter it's number"
       puts "\n1. Voice"
