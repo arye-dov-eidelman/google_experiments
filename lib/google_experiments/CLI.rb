@@ -12,7 +12,7 @@ module GoogleExperiments
 
     # pass in the range of valid numbers and we'll get back to you
     # when/if the user enters such a number
-    def get_input(min=1, max=1) 
+    def get_input(min=1, max) 
       @user_input = gets.strip.downcase
       
       # exit
@@ -25,7 +25,7 @@ module GoogleExperiments
 
       # help
       elsif @user_input == 'help' || @user_input == 'h'
-        puts "\nenter a numer from #{min} to #{max} to explor that option from the list."
+        puts "\nenter a number between #{min} and #{max} to explor that option from the list."
         puts "enter 'home' or 'welcome' for the welcome screen."
         puts "or enter 'exit' 'quit' or 'q' to quit."
         # puts "or enter 'back' or 'b' to go back"
@@ -37,7 +37,7 @@ module GoogleExperiments
 
       # it is an unrecocnized command
       else
-        puts "sorry, what was that? enter a number or enter 'help' for more options."
+        puts "sorry, what was that? enter a number between #{min} and #{max} or enter 'help' for more options."
         self.get_input(min, max)
 
       end
@@ -45,12 +45,14 @@ module GoogleExperiments
 
     def welcome_page
       @homepage ||= Homepage.new
-      puts "\nBrowse cool experiments from google."
+      puts "\nBrowse Cool Experiments From Google."
       puts "\n#{@homepage.about}"
-      puts "\nPlease choose a catigory and enter it's number"
+      # puts ignores the last \n (if i didnt want it why would i put it there?) hence im using print 
+      print "\nPlease choose a catigory and enter it's number\n\n"
       @homepage.categories.each.with_index do |catigory, i|
-        puts "\n#{i+1}. #{catigory.title}"
-        puts "     #{catigory.subtitle}"
+        print "#{i+1}. #{catigory.title}"
+        (18 - catigory.title.length).times{ print ' '}
+        puts "#{catigory.subtitle}"
       end
       puts ""
       self.get_input(1, @homepage.categories.length)
@@ -58,7 +60,9 @@ module GoogleExperiments
     end
 
     def catigory_page(catigory)
-      self.get_input
+      puts "\n\n#{catigory.title} - #{catigory.subtitle}"
+      catigory.get_more_info
+      self.get_input(2)
     end
   end
 end

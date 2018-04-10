@@ -12,8 +12,8 @@ module GoogleExperiments
       doc.css(".box-wrap").each do |card|
         break if !card.css(".headline")[0]
         category = {}
-        card.css('br').each{|br| br.replace(" ")}
-        category[:title] = card.css(".headline")[0].text
+        card.css('br').each{|br| br.replace("\n")}
+        category[:title] = card.css(".headline")[0].text.split("\n")[0]
         category[:subtitle] = card.css(".subline")[0].text
         category[:link] = card.css("a")[0].attribute('href').to_s
         categories << category
