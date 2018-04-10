@@ -61,7 +61,7 @@ module GoogleExperiments
 
     def catigory_page(catigory)
       puts "\n\n#{catigory.title} - #{catigory.subtitle}"
-      catigory.get_more_info
+      catigory.get_page
       self.get_input(2)
     end
   end
