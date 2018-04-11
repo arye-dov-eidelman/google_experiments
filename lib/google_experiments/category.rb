@@ -1,12 +1,9 @@
 module GoogleExperiments
-  class Category
-    attr_accessor :title, :subtitle, :link, :experiments, :about
+  class Category < Page
+    attr_accessor :title, :subtitle, :link, :experiments, :about, :main_list
     def initialize(data)
       data.each{|k, v| self.send("#{k}=", v)}
-    end
-
-    def get_page
-      (@experiments && @about) || self.scrape_page
+      @main_list = @experiments
     end
 
     def scrape_page

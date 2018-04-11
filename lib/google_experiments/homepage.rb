@@ -1,12 +1,9 @@
 module GoogleExperiments
-  class Homepage
-    attr_reader :categories, :about
+  class Homepage < Page
+    attr_reader :categories, :about, :main_list
     def initialize
+      @main_list = @categories
       self.get_page
-    end
-
-    def get_page
-      (@categories && @about) || self.scrape_page
     end
 
     def scrape_page
