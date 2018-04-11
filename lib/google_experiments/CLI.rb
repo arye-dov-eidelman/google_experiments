@@ -62,7 +62,15 @@ module GoogleExperiments
     def catigory_page(catigory)
       puts "\n\n#{catigory.title} - #{catigory.subtitle}"
       catigory.get_page
-      self.get_input(2)
+      puts "\n#{@homepage.about}"
+      print "\nPlease choose an experiment and enter it's number\n\n"
+      catigory.experiments.each.with_index do |experiment, i|
+        print "#{i+1}. #{experiment.title} "
+        (28 - experiment.title.length).times{ print ' '}
+        puts " #{experiment.author}"
+      end
+      puts ""
+      self.get_input(1, catigory.experiments.length)
     end
   end
 end
