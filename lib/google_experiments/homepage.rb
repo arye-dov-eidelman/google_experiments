@@ -2,13 +2,19 @@ module GoogleExperiments
   class Homepage
     attr_reader :categories, :about
     def initialize
-      unless @categories && @about
-        homepage_data = SCRAPER.homepage
-        @about = homepage_data[:about]
-        @categories = []
-        homepage_data[:categories].each do |category_data|
-          @categories << Category.new(category_data)
-        end
+      self.get_page
+    end
+
+    def get_page
+      (@categories && @about) || self.scrape_page
+    end
+
+    def scrape_page
+      data = SCRAPER.homepage
+      @about = data[:about]
+      @categories = []
+      data[:categories].each do |category_data|
+        @categories << Category.new(category_data)
       end
     end
   end
