@@ -26,10 +26,7 @@ module GoogleExperiments
       about = doc.css("#main .wrapper .with60")[0].text
       experiments = []
       doc.css(".expt-box").each do |card|
-        # binding.pry
-        # break if !card.css(".headline")[0]
         experiment = {}
-        # card.css('br').each{|br| br.replace("\n")}
         experiment[:title] = card.css(".box-name")[0].text
         experiment[:author] = card.css(".box-subname")[0].text
         experiment[:link] = card.css("a")[0].attribute('href').to_s
