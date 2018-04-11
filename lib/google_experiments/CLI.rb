@@ -49,11 +49,11 @@ module GoogleExperiments
       puts "\n#{@homepage.about}"
       # puts ignores the last \n (if i didnt want it why would i put it there?) hence im using print 
       print "\nPlease choose a catigory and enter it's number\n\n"
+
       @homepage.categories.each.with_index do |catigory, i|
-        print "#{i+1}. #{catigory.title}"
-        (18 - catigory.title.length).times{ print ' '}
-        puts "#{catigory.subtitle}"
+        puts "#{i+1}. #{catigory.title}#{@homepage.tab(i)}#{catigory.subtitle}"
       end
+
       puts ""
       self.get_input(1, @homepage.categories.length)
       self.catigory_page(@homepage.categories[@user_input])
@@ -64,11 +64,11 @@ module GoogleExperiments
       catigory.get_page
       puts "\n#{@homepage.about}"
       print "\nPlease choose an experiment and enter it's number\n\n"
+
       catigory.experiments.each.with_index do |experiment, i|
-        print "#{i+1}. #{experiment.title} "
-        (28 - experiment.title.length).times{ print ' '}
-        puts " #{experiment.author}"
+        puts "#{i+1}. #{experiment.title}#{catigory.tab(i)}#{experiment.author}"
       end
+
       puts ""
       self.get_input(1, catigory.experiments.length)
     end
