@@ -5,14 +5,18 @@ module GoogleExperiments
     end
     
     def run
+      # start the cli interface
+
       while true
         self.welcome_page
       end
     end
 
-    # pass in the range of valid numbers and we'll get back to you
-    # when/if the user enters such a number
-    def get_input(min=1, max) 
+    def get_and_validate_input(max)
+      # gets user input and checks for keywords and valid numbers in the
+      # provided range. Not to be relied on for it's return value instead
+      # use @user_input after running get_and_validate_input(max)
+
       @user_input = gets.strip.downcase
 
       # exit
@@ -25,20 +29,20 @@ module GoogleExperiments
 
       # help
       elsif @user_input == 'help' || @user_input == 'h'
-        puts "\nenter a number between #{min} and #{max} to explor that option from the list."
-        puts "enter 'home' or 'welcome' for the welcome screen."
+        puts "\nenter a number between 1 and #{max} to explor that option from the list."
+        puts "enter 'home' 'welcome' or '0' for the welcome screen."
         puts "or enter 'exit' 'quit' or 'q' to quit."
         # puts "or enter 'back' or 'b' to go back"
-        self.get_input(min, max)
+        self.get_and_validate_input(max)
 
       # a valid number in the provided range
-      elsif (Float(@user_input) != nil rescue false) && @user_input.to_i.between?(min, max) && max != 0
+      elsif (Float(@user_input) != nil rescue false) && @user_input.to_i.between?(1, max) && max != 0
         @user_input = @user_input.to_i - 1
 
       # it is an unrecocnized command
       else
-        puts "sorry, what was that? enter a number between #{min} and #{max} or enter 'help' for more options."
-        self.get_input(min, max)
+        puts "sorry, what was that? enter a number between 1 and #{max} or enter 'help' for more options."
+        self.get_and_validate_input(max)
 
       end
     end
@@ -55,7 +59,7 @@ module GoogleExperiments
       end
 
       puts ""
-      self.get_input(1, @homepage.categories.length)
+      self.get_and_validate_input(@homepage.categories.length)
       self.catigory_page(@homepage.categories[@user_input])
     end
 
@@ -70,7 +74,7 @@ module GoogleExperiments
       end
 
       puts ""
-      self.get_input(1, catigory.experiments.length)
+      self.get_and_validate_input(catigory.experiments.length)
       self.experiment_page(catigory.experiments[@user_input])
     end
 
@@ -93,7 +97,7 @@ module GoogleExperiments
       end
 
       puts ""
-      self.get_input(1, option_number)
+      self.get_and_validate_input(option_number)
       
       if @user_input == 0 && experiment.launch
         puts "launching in browser..."
@@ -104,7 +108,7 @@ module GoogleExperiments
       end
 
       puts "\n0. home"
-      self.get_input(0, 1)
+      self.get_and_validate_input(1)
     end
   end
 end
