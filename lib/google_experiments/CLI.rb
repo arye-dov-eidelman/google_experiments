@@ -32,7 +32,7 @@ module GoogleExperiments
         self.get_input(min, max)
 
       # a valid number in the provided range
-      elsif (Float(@user_input) != nil rescue false) && @user_input.to_i.between?(min, max)
+      elsif (Float(@user_input) != nil rescue false) && @user_input.to_i.between?(min, max) && max != 0
         @user_input = @user_input.to_i - 1
 
       # it is an unrecocnized command
@@ -77,26 +77,29 @@ module GoogleExperiments
     def experiment_page(experiment)
       puts "\n\n#{experiment.title} - #{experiment.author}"
       experiment.get_page
-      puts "\n#{@experiment.about}"
-      i = 1
+      puts "\n#{experiment.intro}"
+      puts "\n#{experiment.about}"
+      option_number = 0
 
       if experiment.launch
-        puts "#{i}. Launch in browser"
-        i += i
+        option_number += 1
+        puts "#{option_number}. Launch in browser"
       end
       if experiment.code
-        puts "#{i}. view on github"
-        i += i
+        option_number += 1
+        puts "#{option_number}. view on github"
       end
 
       puts ""
-      self.get_input(1, i)
+      self.get_input(1, option_number)
 
       if @user_input = 1 && experiment.launch
         puts "launching in browser..."
       else
         puts "opening on github..."
       end
+
+      self.get_input(1, 0)
     end
   end
 end
