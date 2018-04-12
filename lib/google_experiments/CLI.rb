@@ -20,7 +20,7 @@ module GoogleExperiments
         exit
 
       # home
-      elsif @user_input == 'home' || @user_input == 'welcome'
+      elsif @user_input == 'home' || @user_input == 'welcome' || @user_input == '0'
         self.run
 
       # help
@@ -79,8 +79,10 @@ module GoogleExperiments
       experiment.get_page
       puts "\n#{experiment.intro}"
       puts "\n#{experiment.about}"
+      puts ""
       option_number = 0
 
+      puts "0. home"
       if experiment.launch
         option_number += 1
         puts "#{option_number}. Launch in browser"
@@ -92,8 +94,8 @@ module GoogleExperiments
 
       puts ""
       self.get_input(1, option_number)
-
-      if @user_input = 1 && experiment.launch
+      
+      if @user_input == 0 && experiment.launch
         puts "launching in browser..."
         Launchy.open(experiment.launch)
       else
@@ -101,7 +103,8 @@ module GoogleExperiments
         Launchy.open(experiment.code)
       end
 
-      self.get_input(1, 0)
+      puts "\n0. home"
+      self.get_input(0, 1)
     end
   end
 end
