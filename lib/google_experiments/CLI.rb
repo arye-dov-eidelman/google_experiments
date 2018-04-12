@@ -62,7 +62,7 @@ module GoogleExperiments
     def catigory_page(catigory)
       puts "\n\n#{catigory.title} - #{catigory.subtitle}"
       catigory.get_page
-      puts "\n#{@homepage.about}"
+      puts "\n#{catigory.about}"
       print "\nPlease choose an experiment and enter it's number\n\n"
 
       catigory.experiments.each.with_index do |experiment, i|
@@ -71,6 +71,32 @@ module GoogleExperiments
 
       puts ""
       self.get_input(1, catigory.experiments.length)
+      self.experiment_page(catigory.experiments[@user_input])
+    end
+
+    def experiment_page(experiment)
+      puts "\n\n#{experiment.title} - #{experiment.author}"
+      experiment.get_page
+      puts "\n#{@experiment.about}"
+      i = 1
+
+      if experiment.launch
+        puts "#{i}. Launch in browser"
+        i += i
+      end
+      if experiment.code
+        puts "#{i}. view on github"
+        i += i
+      end
+
+      puts ""
+      self.get_input(1, i)
+
+      if @user_input = 1 && experiment.launch
+        puts "launching in browser..."
+      else
+        puts "opening on github..."
+      end
     end
   end
 end
