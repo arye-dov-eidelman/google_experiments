@@ -10,6 +10,7 @@ require "google_experiments"
 require 'pry'
 require 'open-uri'
 require 'nokogiri'
+require 'launchy'
 
 module GoogleExperiments
   SCRAPER = Scraper.new

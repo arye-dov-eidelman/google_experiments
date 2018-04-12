@@ -14,7 +14,7 @@ module GoogleExperiments
     # when/if the user enters such a number
     def get_input(min=1, max) 
       @user_input = gets.strip.downcase
-      
+
       # exit
       if @user_input == 'exit' || @user_input == 'quit' || @user_input == 'q'
         exit
@@ -95,8 +95,10 @@ module GoogleExperiments
 
       if @user_input = 1 && experiment.launch
         puts "launching in browser..."
+        Launchy.open(experiment.launch)
       else
         puts "opening on github..."
+        Launchy.open(experiment.code)
       end
 
       self.get_input(1, 0)
