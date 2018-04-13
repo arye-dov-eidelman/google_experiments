@@ -1,10 +1,10 @@
-require "google_experiments/version"
-require "google_experiments/cli"
-require "google_experiments/page"
-require "google_experiments/homepage"
-require "google_experiments/category"
-require "google_experiments/experiment"
-require "google_experiments/scraper"
+require_relative "google_experiments/version"
+require_relative "google_experiments/cli"
+require_relative "google_experiments/page"
+require_relative "google_experiments/homepage"
+require_relative "google_experiments/category"
+require_relative "google_experiments/experiment"
+require_relative "google_experiments/scraper"
 
 require 'pry'
 require 'open-uri'

@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
 require "bundler/setup"
-require "google_experiments"
+require_relative "../lib/google_experiments"
 
 GoogleExperiments::CLI.new.run
