@@ -6,7 +6,7 @@ module GoogleExperiments
 
     def homepage
       doc = Nokogiri::HTML(open(@base_url))
-      about = doc.css("#main .wrapper .with60")[0].text
+      about = doc.css("#main .wrapper .with60")[0].text.scan(/.{1,90} /).join("\n")
       categories = []
       doc.css(".box-wrap").each do |card|
         break if !card.css(".headline")[0]
@@ -23,7 +23,7 @@ module GoogleExperiments
 
     def category(link)
       doc = Nokogiri::HTML(open(@base_url + link))
-      about = doc.css("#main .wrapper .with60")[0].text
+      about = doc.css("#main .wrapper .with60")[0].text.scan(/.{1,90} /).join("\n")
       experiments = []
       doc.css(".expt-box").each do |card|
         experiment = {}
@@ -39,8 +39,8 @@ module GoogleExperiments
       result = {}
       doc = Nokogiri::HTML(open(@base_url + link))
       doc.css('#exp-intro .displaytext p br')[0].replace("\n")
-      result[:intro] = doc.css("#exp-intro .displaytext p")[0].text.split("\n")[0]
-      result[:about] = doc.css(".single .displaytext")[0].text
+      result[:intro] = doc.css("#exp-intro .displaytext p")[0].text.split("\n")[0].scan(/.{1,90} /).join("\n")
+      result[:about] = doc.css(".single .displaytext")[0].text.scan(/.{1,90} /).join("\n")
       
       if element = doc.css("a.button[onclick*=Launch]")[0]
         result[:launch] = element.attribute('href').to_s
