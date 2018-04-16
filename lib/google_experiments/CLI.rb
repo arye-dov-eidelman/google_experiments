@@ -11,6 +11,11 @@ module GoogleExperiments
         self.welcome_page
       end
     end
+    
+    def print_paragraph(p)
+      # formats and prints the paragraph
+      print "\n#{p.scan(/.{1,90}(?: |$)/).join("\n")}\n"
+    end
 
     def get_and_validate_input(max)
       # gets user input and checks for commands and valid numbers in the
@@ -52,7 +57,7 @@ module GoogleExperiments
 
       @homepage ||= Homepage.new
       puts "\nBrowse Cool Experiments From Google."
-      puts "\n#{@homepage.about}"
+      print_paragraph(@homepage.about)
 
       # puts ignores the last \n hence im using print
       # if i didnt want it why would i put it there?
@@ -76,7 +81,7 @@ module GoogleExperiments
       # prints title subtitle and more about this catigory
       puts "\n\n#{catigory.title} - #{catigory.subtitle}"
       catigory.get_page
-      puts "\n#{catigory.about}"
+      print_paragraph(catigory.about)
       print "\nPlease choose an experiment and enter it's number\n\n"
       
       # prints a list of experiments with an option number title and author
@@ -98,8 +103,8 @@ module GoogleExperiments
       # print title author intro and moore about this experiment
       puts "\n\n#{experiment.title} - #{experiment.author}"
       experiment.get_page
-      puts "\n#{experiment.intro}"
-      puts "\n#{experiment.about}"
+      print_paragraph(experiment.intro)
+      print_paragraph(experiment.about)
       puts ""
 
       # if possible display options to try the experiment or veiw the soure code 
