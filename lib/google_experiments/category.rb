@@ -3,15 +3,13 @@ module GoogleExperiments
     attr_accessor :title, :subtitle, :link, :experiments, :about, :main_list
     def initialize(data)
       data.each{|k, v| self.send("#{k}=", v)}
-      @experiments = []
-      @main_list = @experiments
     end
 
     def scrape_page
       data = SCRAPER.category(@link)
       @about = data[:about]
-      data[:experiments].each do |experiment_data|
-        @experiments << Experiment.new(experiment_data)
+      @main_list = @experiments = data[:experiments].collect do |experiment_data|
+        Experiment.new(experiment_data)
       end
     end
   end
