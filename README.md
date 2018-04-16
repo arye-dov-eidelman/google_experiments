@@ -4,30 +4,21 @@
 
 ## Installation
 
-Add this line to your application's Gemfile:
+# notice! read before installing!!
 
-```ruby
-gem 'google_experiments'
+> I'm working on fixing an issue with the instalation. for now manualy install the following gems for it to work
+
+```bash
+  "bundler", "~> 1.16"
+  "rake", "~> 10.0",
+  "rspec", "~> 3.0",
+  "pry", "~> 0.1",
+  "nokogiri", "~> 1.8",
+  "launchy", "~> 2.4",
 ```
-
-And then execute:
-
-    bundle
-
-Or install it yourself as:
-
-    gem install google_experiments
 
 ## Usage
 
-### use as a gem
-
-to create your own interface have a look at `lib/google_experiments/cli.rb`
-for an understanding on how to interact with the classes
-
-### run standelone CLI app
-
-    bin/setup
     bin/google_experiments
 
 ## Development
