@@ -4,22 +4,22 @@
 
 ## Installation
 
-# notice! read before installing!!
-
+>> # Notice! read before installing!!
 > I'm working on fixing an issue with the instalation. for now manualy install the following gems for it to work
 
 ```bash
-  "bundler", "~> 1.16"
-  "rake", "~> 10.0",
-  "rspec", "~> 3.0",
-  "pry", "~> 0.1",
-  "nokogiri", "~> 1.8",
-  "launchy", "~> 2.4",
+gem install bundler
+gem install rake
+gem install rspec
+gem install pry
+gem install nokogiri -v '~> 1.8'
+gem install launch -v '~> 2.4'
+git clone https://github.com/arye-dov-eidelman/google_experiments.git
 ```
 
 ## Usage
 
-    bin/google_experiments
+    ruby bin/google_experiments
 
 ## Development
 
