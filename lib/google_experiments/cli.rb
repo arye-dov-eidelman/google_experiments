@@ -2,13 +2,27 @@ module GoogleExperiments
   class CLI
     def initialize
       @user_input = ''
+      @history = []
     end
     
     def run
       # start the cli interface
 
       while true
+        # save navigation to history
+        @history << {method: self.method(:welcome_page)}
         self.welcome_page
+      end
+    end
+
+    def back
+
+      @history.pop
+      last_page = @history.last
+      if last_page.has_key?(:parameter)
+        last_page[:method].call(last_page[:parameter])
+      else
+        last_page[:method].call
       end
     end
     
@@ -32,10 +46,15 @@ module GoogleExperiments
       elsif @user_input == 'home' || @user_input == 'welcome' || @user_input == '0'
         self.run
 
+      # back
+      elsif (@user_input == 'back' || @user_input == 'b') && @history.size > 1
+        self.back
+
       # help
       elsif @user_input == 'help' || @user_input == 'h'
         puts "\nenter a number between 1 and #{max} to explor that option from the list."
         puts "enter 'home' 'welcome' or '0' for the welcome screen."
+        puts "'b' or 'back' for the last page." if @history.size > 1
         puts "or enter 'exit' 'quit' or 'q' to quit."
         # puts "or enter 'back' or 'b' to go back"
         self.get_and_validate_input(max)
@@ -72,6 +91,9 @@ module GoogleExperiments
 
       # gets user input and navigates to the direct page
       self.get_and_validate_input(@homepage.categories.length)
+
+      # save navigation to history
+      @history << {method: self.method(:catigory_page), parameter: @homepage.categories[@user_input]}
       self.catigory_page(@homepage.categories[@user_input])
     end
 
@@ -93,6 +115,9 @@ module GoogleExperiments
 
       # gets user input and navigates to the direct page
       self.get_and_validate_input(catigory.experiments.length)
+
+      # save navigation to history
+      @history << {method: self.method(:experiment_page), parameter: catigory.experiments[@user_input]}
       self.experiment_page(catigory.experiments[@user_input])
     end
 
@@ -119,7 +144,10 @@ module GoogleExperiments
 
       # gets user input
       self.get_and_validate_input(option_number)
-      
+
+      # save navigation to history
+      @history << {method: self.method(:welcome_page)}
+
       # and navigates to the direct page in the brower or go back to thew welcome page
       if @user_input == 0 && experiment.launch
         puts "launching in browser..."
